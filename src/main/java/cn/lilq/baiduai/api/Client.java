@@ -12,9 +12,9 @@ import java.util.HashMap;
 
 @Repository
 public class Client {
-    private static String APP_ID = "";
-    private static String API_KEY = "";
-    private static String SECRET_KEY = "";
+    private static String APP_ID = "18243176";
+    private static String API_KEY = "VtanZOh6EPcHj324HDKzrscD";
+    private static String SECRET_KEY = "aIiDeGVpqajNa9qaaprXx9R7NWmgyKM9";
     private AipFace client;
 
     public Client() {
@@ -43,7 +43,7 @@ public class Client {
     public FaceAddAPI add(String image, String imageType, String groupId, String userId) {
         // 传入可选参数调用接口
         HashMap<String, String> options = new HashMap<String, String>();
-        options.put("quality_control", "NORMAL");
+        options.put("quality_control", "LOW");
         options.put("liveness_control", "LOW");
         options.put("action_type", "REPLACE");
 

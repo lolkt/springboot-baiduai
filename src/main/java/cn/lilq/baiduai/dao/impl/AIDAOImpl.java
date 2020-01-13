@@ -25,7 +25,9 @@ public class AIDAOImpl implements AIDAO {
 
     @Override
     public User insertUser(User user) {
-        if (user==null) return null;
+        if (user==null) {
+            return null;
+        }
         //判断用于数量 生成分组规则
         String group = "test"+users.size()/10;
         String uuid = UUID.randomUUID().toString().replaceAll("-","");
@@ -38,7 +40,9 @@ public class AIDAOImpl implements AIDAO {
 
     @Override
     public User getUser(User user) {
-        if (user==null) return null;
+        if (user==null) {
+            return null;
+        }
         return idToUser.get(user.getId());
     }
 
