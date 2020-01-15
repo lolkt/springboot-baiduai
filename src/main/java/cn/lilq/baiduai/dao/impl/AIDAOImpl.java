@@ -29,7 +29,7 @@ public class AIDAOImpl implements AIDAO {
             return null;
         }
         //判断用于数量 生成分组规则
-        String group = "test"+users.size()/10;
+        String group = "test";
         String uuid = UUID.randomUUID().toString().replaceAll("-","");
         User userNew = new User(group,uuid,user.getName());
         users.add(userNew);
@@ -75,13 +75,6 @@ public class AIDAOImpl implements AIDAO {
 
     @Override
     public String getGroup() {
-        int size = users.size();
-        int sum = size%10==0?size/10-1:size/10;
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i <= sum; i++) {
-            builder.append("test"+i+",");
-        }
-        builder.deleteCharAt(builder.lastIndexOf(","));
-        return builder.toString();
+        return "test";
     }
 }

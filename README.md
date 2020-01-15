@@ -12,3 +12,13 @@
 /baiduai/v1/face/multi-search
 
 image的值为BASE64编码的字符串，在Base64Util main方法中
+
+或
+
+image的值为url，imageType=URL
+
+
+------------------------------------------------------
+百度API
+
+https://ai.baidu.com/ai-doc/FACE/8k37c1rqz

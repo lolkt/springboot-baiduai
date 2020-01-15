@@ -20,7 +20,8 @@ public class Client {
     public Client() {
         client = new AipFace(APP_ID, API_KEY, SECRET_KEY);
     }
-    public FaceSearchAPI search(String image,String imageType,String groupIdList) {
+
+    public FaceSearchAPI search(String image, String imageType, String groupIdList) {
         // 传入可选参数调用接口
         HashMap<String, String> options = new HashMap<String, String>();
         options.put("max_face_num", "3");
@@ -35,16 +36,16 @@ public class Client {
 
         // 人脸搜索 M:N 识别
         JSONObject res = client.multiSearch(image, imageType, groupIdList, options);
-        FaceSearchAPI faceSearchAPI = GsonUtils.fromJson(res.toString(),FaceSearchAPI.class);
+        FaceSearchAPI faceSearchAPI = GsonUtils.fromJson(res.toString(), FaceSearchAPI.class);
         System.out.println(faceSearchAPI);
-        return  faceSearchAPI;
+        return faceSearchAPI;
     }
 
     public FaceAddAPI add(String image, String imageType, String groupId, String userId) {
         // 传入可选参数调用接口
         HashMap<String, String> options = new HashMap<String, String>();
-        options.put("quality_control", "LOW");
-        options.put("liveness_control", "LOW");
+        options.put("quality_control", "NORMAL");
+        options.put("liveness_control", "NORMAL");
         options.put("action_type", "REPLACE");
 
 //        String image = "取决于image_type参数，传入BASE64字符串或URL字符串或FACE_TOKEN字符串";
@@ -55,7 +56,7 @@ public class Client {
         JSONObject res = client.addUser(image, imageType, groupId, userId, options);
 //        System.out.println(res.toString());
 //        System.out.println(res.toString(2));
-        return GsonUtils.fromJson(res.toString(),FaceAddAPI.class);
+        return GsonUtils.fromJson(res.toString(), FaceAddAPI.class);
 
     }
 

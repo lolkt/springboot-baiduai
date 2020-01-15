@@ -24,9 +24,11 @@ public class AICon {
     }
 
     @ApiOperation(value = "注册用户映射，人脸", notes = "{\n" +
-            "  \"image\": \"BASE64编码的字符串\",\n" +
-            "  \"imageType\": \"BASE64\",\n" +
-            "  \"name\": \"sunss\"\n" +
+            "\"image\": \"BASE64编码的字符串\",\n" +
+            "\"imageType\": \"BASE64\"\n" +
+            "}\n或\n{\n" +
+            "  \"image\": \"http://inews.gtimg.com/newsapp_bt/0/10954592796/1000.jpg\",\n" +
+            "  \"imageType\": \"URL\"\n" +
             "}")
     @RequestMapping(value = "/baiduai/v1/faceset/face", method = RequestMethod.POST)
     public Response faceAdd(@RequestBody PostMess postMess) {
@@ -58,6 +60,10 @@ public class AICon {
             "  \"image\": \"BASE64编码的字符串\",\n" +
             "  \"imageType\": \"BASE64\",\n" +
             "  \"name\": \"sunss\"\n" +
+            "}\n或\n{\n" +
+            "  \"image\": \"http://n.sinaimg.cn/sinacn10/719/w960h559/20180716/475a-hfkffak3792414.jpg\",\n" +
+            "  \"imageType\": \"URL\",\n" +
+            "  \"name\": \"naza2\"\n" +
             "}")
     @RequestMapping(value = "/baiduai/v1/face/multi-search", method = RequestMethod.POST)
     public Response faceSearch(@RequestBody PostMess postMess) {
