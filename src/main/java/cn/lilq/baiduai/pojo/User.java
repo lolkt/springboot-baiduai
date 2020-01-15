@@ -15,6 +15,11 @@ public class User {
         this.name = name;
     }
 
+    public User(String groupId, String id) {
+        this.groupId = groupId;
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "User{" +

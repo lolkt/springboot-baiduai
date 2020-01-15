@@ -15,8 +15,7 @@ import java.util.List;
 
 @RestController
 public class AICon {
-    @Autowired
-    private AIDAO aidao;
+
     @Autowired
     private Client client;
 
@@ -32,26 +31,28 @@ public class AICon {
             "}")
     @RequestMapping(value = "/baiduai/v1/faceset/face", method = RequestMethod.POST)
     public Response faceAdd(@RequestBody PostMess postMess) {
-        User user = aidao.insertUser(new User(null, null, postMess.getName()));
+        User user = new User("test",  postMess.getName());
         FaceAddAPI faceAddAPI = client.add(postMess.getImage(), postMess.getImageType(), user.getGroupId(), user.getId());
         if (!"SUCCESS".equals(faceAddAPI.getErrorMsg())) {
-            aidao.removeUser(user);
+            return new Response(faceAddAPI.getErrorMsg(), null);
         }
+        System.out.println("添加成功" + faceAddAPI.toString());
+
         return new Response(faceAddAPI.getErrorMsg(), null);
     }
 
     //获得全部用户映射
     @RequestMapping(value = "/baiduai/v1/faceset/users", method = RequestMethod.GET)
     public Response users() {
-        return new Response("SUCCESS", new Response.Result(aidao.getUsers(), null, null));
+        return new Response("SUCCESS", new Response.Result(null, null, null));
     }
 
     //增加用户映射
     @RequestMapping(value = "/baiduai/v1/faceset/users", method = RequestMethod.POST)
     public Response users(@RequestBody List<User> users) {
-        if (aidao.addUser(users)) {
-            return new Response("SUCCESS", null);
-        }
+//        if (aidao.addUser(users)) {
+//            return new Response("SUCCESS", null);
+//        }
         return new Response("add user mapping error", null);
     }
 
@@ -72,7 +73,7 @@ public class AICon {
 //        } catch (UnsupportedEncodingException e) {
 //            e.printStackTrace();
 //        }
-        FaceSearchAPI faceSearchAPI = client.search(postMess.getImage(), postMess.getImageType(), aidao.getGroup());
+        FaceSearchAPI faceSearchAPI = client.search(postMess.getImage(), postMess.getImageType(), "test");
         Response response = new Response();
         Response.Result resultNew = new Response.Result();
         if (faceSearchAPI.getResult() != null) {
@@ -93,10 +94,8 @@ public class AICon {
                 //获取概率最大用户
                 FaceSearchAPI.User user = face.getUserList().stream().max((o1, o2) -> o1.getScore() >= o2.getScore() ? 1 : -1).get();
                 System.out.println("用户概率最大" + user);
-                User user1 = aidao.getUser(new User(null, user.getId(), null));
-                System.out.println("用户====" + user1);
                 //人脸对应用户
-                faceNew.setUser(new Response.User(user1.getName(), user.getScore()));
+                faceNew.setUser(new Response.User(user.getId(), user.getScore()));
                 //添加用户
                 facesNew.add(faceNew);
             });
