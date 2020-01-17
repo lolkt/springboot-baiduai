@@ -82,7 +82,7 @@ public class Test {
         * HIGH: 较高的活体要求(高攻击拒绝率 低通过率)
         * 默认NONE
         */
-        options.put("liveness_control","NONE");
+        options.put("liveness_control","NORMAL");
         JSONObject jsonSearch = aipFace.search(encodeSearch, "BASE64", "girls", options);
         System.out.println("===" + jsonSearch.toString());
         if ("SUCCESS".equals(jsonSearch.optString("error_msg"))) {

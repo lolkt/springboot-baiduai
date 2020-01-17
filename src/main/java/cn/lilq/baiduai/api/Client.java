@@ -27,7 +27,7 @@ public class Client {
         options.put("max_face_num", "3");
         options.put("match_threshold", "70");
         options.put("quality_control", "NORMAL");
-        options.put("liveness_control", "LOW");
+        options.put("liveness_control", "NORMAL");
         options.put("max_user_num", "3");
 
 //        String image = "取决于image_type参数，传入BASE64字符串或URL字符串或FACE_TOKEN字符串";
